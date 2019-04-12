@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +27,15 @@ class MainActivity : AppCompatActivity() {
         )
 
         spinner.adapter = MyAdapter(R.layout.adapter_layout, itemName)
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Log.d(KotlinLog, "spinner choice $position Item")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.d(KotlinLog, "spinner no choice Item")
+            }
+        }
 
         gridView.numColumns = 3
         gridView.adapter = MyAdapter(R.layout.adapter_layout, itemName)
